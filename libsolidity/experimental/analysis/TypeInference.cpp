@@ -128,6 +128,12 @@ bool TypeInference::analyze(SourceUnit const& _sourceUnit)
 	return !m_errorReporter.hasErrors();
 }
 
+bool TypeInference::visit(ForAllQuantifier const& /*_forAllQuantifier*/)
+{
+	// Nothing to do here. All the magic happens when we visit the parameter list.
+	return true;
+}
+
 bool TypeInference::visit(FunctionDefinition const& _functionDefinition)
 {
 	solAssert(m_expressionContext == ExpressionContext::Term);
