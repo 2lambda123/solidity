@@ -1,1 +1,1 @@
---ir-optimized --yul-optimizations :
+--ir-optimized --metadata --yul-optimizations :
