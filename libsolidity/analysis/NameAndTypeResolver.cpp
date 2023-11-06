@@ -703,6 +703,26 @@ void DeclarationRegistrationHelper::registerDeclaration(Declaration& _declaratio
 	solAssert(m_currentScope && m_scopes.count(m_currentScope), "No current scope.");
 	solAssert(m_currentScope == _declaration.scope(), "Unexpected current scope.");
 
+	// Functions defined inside quantifiers are available in the scope containing the quantifier
+	auto const* quantifier = dynamic_cast<ForAllQuantifier const*>(m_currentScope);
+	auto const* functionDefinition = dynamic_cast<FunctionDefinition const*>(&_declaration);
+	if (quantifier && functionDefinition)
+	{
+		solAssert(quantifier->scope());
+		solAssert(
+			// forall quantifiers cannot be used in block scope so the declaration is always active.
+			!dynamic_cast<Block const*>(quantifier->scope()) &&
+			!dynamic_cast<ForStatement const*>(quantifier->scope())
+		);
+		registerDeclaration(*m_scopes.at(quantifier->scope()), _declaration, nullptr, nullptr, false /* inactive */, m_errorReporter);
+
+		// TMP: Should I adjust the scope to match visibility? Here or in the Scoper?
+		//_declaration.annotation().scope = quantifier->scope();
+
+		solAssert(_declaration.annotation().contract == m_currentContract, "");
+		return;
+	}
+
 	// Register declaration as inactive if we are in block scope.
 	bool inactive =
 		(dynamic_cast<Block const*>(m_currentScope) || dynamic_cast<ForStatement const*>(m_currentScope));

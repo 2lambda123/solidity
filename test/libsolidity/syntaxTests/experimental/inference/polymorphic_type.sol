@@ -7,6 +7,7 @@ type V;
 class Self: C {}
 class Self: D {}
 
+forall (X, Y, Z)
 function run() {
     let x: T(U, X, Z: C);
     let y: T(V, Y, Z: D);
@@ -27,21 +28,25 @@ function run() {
 // Info 4164: (71-75): Inferred type: 'k:(type, C)
 // Info 4164: (82-98): Inferred type: D
 // Info 4164: (88-92): Inferred type: 'l:(type, D)
-// Info 4164: (100-170): Inferred type: () -> ()
-// Info 4164: (112-114): Inferred type: ()
-// Info 4164: (125-141): Inferred type: T(U, ?bk:type, ?bm:(type, C))
-// Info 4164: (128-141): Inferred type: T(U, ?bk:type, ?bm:(type, C))
-// Info 4164: (128-129): Inferred type: tfun((U, ?bk:type, ?bm:(type, C)), T(U, ?bk:type, ?bm:(type, C)))
-// Info 4164: (130-131): Inferred type: U
-// Info 4164: (133-134): Inferred type: ?bk:type
-// Info 4164: (136-140): Inferred type: ?bm:(type, C)
-// Info 4164: (136-137): Inferred type: ?bm:(type, C)
-// Info 4164: (139-140): Inferred type: ?bm:(type, C)
-// Info 4164: (151-167): Inferred type: T(V, ?br:type, ?bt:(type, D))
-// Info 4164: (154-167): Inferred type: T(V, ?br:type, ?bt:(type, D))
-// Info 4164: (154-155): Inferred type: tfun((V, ?br:type, ?bt:(type, D)), T(V, ?br:type, ?bt:(type, D)))
-// Info 4164: (156-157): Inferred type: V
-// Info 4164: (159-160): Inferred type: ?br:type
-// Info 4164: (162-166): Inferred type: ?bt:(type, D)
-// Info 4164: (162-163): Inferred type: ?bt:(type, D)
-// Info 4164: (165-166): Inferred type: ?bt:(type, D)
+// Info 4164: (107-116): Inferred type: (?bf:type, ?bg:type, ?bt:(type, C, D))
+// Info 4164: (108-109): Inferred type: ?bf:type
+// Info 4164: (111-112): Inferred type: ?bg:type
+// Info 4164: (114-115): Inferred type: ?bt:(type, C, D)
+// Info 4164: (117-187): Inferred type: () -> ()
+// Info 4164: (129-131): Inferred type: ()
+// Info 4164: (142-158): Inferred type: T(U, ?bf:type, ?bt:(type, C, D))
+// Info 4164: (145-158): Inferred type: T(U, ?bf:type, ?bt:(type, C, D))
+// Info 4164: (145-146): Inferred type: tfun((U, ?bf:type, ?bt:(type, C, D)), T(U, ?bf:type, ?bt:(type, C, D)))
+// Info 4164: (147-148): Inferred type: U
+// Info 4164: (150-151): Inferred type: ?bf:type
+// Info 4164: (153-157): Inferred type: ?bt:(type, C, D)
+// Info 4164: (153-154): Inferred type: ?bt:(type, C, D)
+// Info 4164: (156-157): Inferred type: ?bt:(type, C, D)
+// Info 4164: (168-184): Inferred type: T(V, ?bg:type, ?bt:(type, C, D))
+// Info 4164: (171-184): Inferred type: T(V, ?bg:type, ?bt:(type, C, D))
+// Info 4164: (171-172): Inferred type: tfun((V, ?bg:type, ?bt:(type, C, D)), T(V, ?bg:type, ?bt:(type, C, D)))
+// Info 4164: (173-174): Inferred type: V
+// Info 4164: (176-177): Inferred type: ?bg:type
+// Info 4164: (179-183): Inferred type: ?bt:(type, C, D)
+// Info 4164: (179-180): Inferred type: ?bt:(type, C, D)
+// Info 4164: (182-183): Inferred type: ?bt:(type, C, D)
