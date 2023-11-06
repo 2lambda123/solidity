@@ -69,7 +69,7 @@
 #include <libyul/YulStack.h>
 #include <libyul/AST.h>
 #include <libyul/AsmParser.h>
-#include <libyul/optimiser/OptimizerUtilities.h>
+#include <libyul/optimiser/Suite.h>
 
 #include <liblangutil/Scanner.h>
 #include <liblangutil/SemVerHandler.h>
@@ -1676,8 +1676,8 @@ std::string CompilerStack::createMetadata(Contract const& _contract, bool _forIR
 		}
 		else if
 		(
-			isEmptyOptimizerSequence(m_optimiserSettings.yulOptimiserSteps) &&
-			isEmptyOptimizerSequence(m_optimiserSettings.yulOptimiserCleanupSteps)
+			OptimiserSuite::isEmptyOptimizerSequence(m_optimiserSettings.yulOptimiserSteps) &&
+			OptimiserSuite::isEmptyOptimizerSequence(m_optimiserSettings.yulOptimiserCleanupSteps)
 		)
 		{
 			details["yulDetails"] = Json::objectValue;

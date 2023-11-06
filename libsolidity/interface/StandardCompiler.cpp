@@ -27,7 +27,6 @@
 #include <libsolidity/ast/ASTJsonExporter.h>
 #include <libyul/YulStack.h>
 #include <libyul/Exceptions.h>
-#include <libyul/optimiser/OptimizerUtilities.h>
 #include <libyul/optimiser/Suite.h>
 
 #include <libevmasm/Disassemble.h>
@@ -464,7 +463,7 @@ std::optional<Json::Value> checkOptimizerDetailSteps(Json::Value const& _details
 		if (_details[_name].isString())
 		{
 			std::string const fullSequence = _details[_name].asString();
-			if (!_runYulOptimizer && !isEmptyOptimizerSequence(fullSequence))
+			if (!_runYulOptimizer && !OptimiserSuite::isEmptyOptimizerSequence(fullSequence))
 				return formatFatalError(Error::Type::JSONError, "If Yul optimizer is disabled, only an empty optimizerSteps sequence is accepted.");
 
 			try

@@ -54,10 +54,6 @@ std::optional<evmasm::Instruction> toEVMInstruction(Dialect const& _dialect, Yul
 /// It returns the default EVM version if dialect is not an EVMDialect.
 langutil::EVMVersion const evmVersionFromDialect(Dialect const& _dialect);
 
-/// Check whether the provided sequence is empty provided that the allowed characters are
-/// whitespace, newline and :
-bool isEmptyOptimizerSequence(std::string const& _sequence);
-
 class StatementRemover: public ASTModifier
 {
 public:

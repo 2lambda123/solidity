@@ -20,7 +20,6 @@
 
 #include <solc/Exceptions.h>
 
-#include <libyul/optimiser/OptimizerUtilities.h>
 #include <libyul/optimiser/Suite.h>
 
 #include <liblangutil/EVMVersion.h>
@@ -1230,7 +1229,7 @@ void CommandLineParser::processArgs()
 	if (m_args.count(g_strYulOptimizations))
 	{
 		OptimiserSettings optimiserSettings = m_options.optimiserSettings();
-		if (!optimiserSettings.runYulOptimiser && !isEmptyOptimizerSequence(m_args[g_strYulOptimizations].as<std::string>()))
+		if (!optimiserSettings.runYulOptimiser && !OptimiserSuite::isEmptyOptimizerSequence(m_args[g_strYulOptimizations].as<std::string>()))
 			solThrow(CommandLineValidationError, "--" + g_strYulOptimizations + " is invalid with a non-empty sequence if Yul optimizer is disabled.");
 
 		try

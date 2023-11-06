@@ -78,22 +78,3 @@ void StatementRemover::operator()(Block& _block)
 	);
 	ASTModifier::operator()(_block);
 }
-
-bool yul::isEmptyOptimizerSequence(std::string const& _sequence)
-{
-	size_t delimiterCount{0};
-	for (char const step: _sequence)
-		switch (step)
-		{
-			case ':':
-				if (++delimiterCount > 1)
-					return false;
-				break;
-			case ' ':
-			case '\n':
-				break;
-			default:
-				return false;
-		}
-	return true;
-}
