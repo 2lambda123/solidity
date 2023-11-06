@@ -30,6 +30,7 @@
 #include <libyul/backends/evm/EVMObjectCompiler.h>
 #include <libyul/backends/evm/EVMMetrics.h>
 #include <libyul/ObjectParser.h>
+#include <libyul/optimiser/OptimizerUtilities.h>
 #include <libyul/optimiser/Semantics.h>
 #include <libyul/optimiser/Suite.h>
 #include <libevmasm/Assembly.h>
@@ -171,7 +172,7 @@ void YulStack::optimize(Object& _object, bool _isCreation)
 		if (!m_optimiserSettings.runYulOptimiser)
 		{
 			// Yul optimizer disabled, but empty sequence (:) explicitly provided
-			if (OptimiserSuite::isEmptyOptimizerSequence(m_optimiserSettings.yulOptimiserSteps + ":" + m_optimiserSettings.yulOptimiserCleanupSteps))
+			if (isEmptyOptimizerSequence(m_optimiserSettings.yulOptimiserSteps + ":" + m_optimiserSettings.yulOptimiserCleanupSteps))
 				return std::make_tuple(true, "", "");
 			// Yul optimizer disabled, and no sequence explicitly provided (assumes default sequence)
 			else
